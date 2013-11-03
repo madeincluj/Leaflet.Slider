@@ -109,7 +109,7 @@ L.Control.Slider = (function () {
 			min: 0,
 			max: 1,
 			step: 0.1,
-			value: 1, // window.historical.options.opacity / this.options.step
+			value: 1,
 			slider: function(){}
 		},
 
@@ -143,11 +143,15 @@ L.Control.Slider = (function () {
 
 		_createUI: function () {
 			var ui = {},
-				ns = this.options.wrapClass;
+				ns = this.options.wrapClass,
+				id = this.options.id;
 
 			ui.wrap = L.DomUtil.create('div', ns + ' leaflet-bar ' + ns + '-' + this.options.orientation),
 			ui.body = L.DomUtil.create('div', ns + '-body', ui.wrap),
 			ui.knob = L.DomUtil.create('div', ns + '-knob', ui.body);
+			if (id) {
+				ui.wrap.id = id;
+			}
 
 			L.DomEvent.disableClickPropagation(ui.wrap);
 			L.DomEvent.disableClickPropagation(ui.knob);
